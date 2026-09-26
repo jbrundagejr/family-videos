@@ -30,7 +30,6 @@ export const getBucketContentsWithPresignedURLs = async (Bucket: string) => {
 	return Promise.all(
 		objects.map(async (obj) => ({
 			key: obj.Key,
-			lastModified: obj.LastModified,
 			url: obj.Key ? await getPresignedUrl(Bucket, obj.Key) : null,
 		})),
 	)

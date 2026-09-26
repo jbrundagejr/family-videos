@@ -9,7 +9,7 @@ export default defineNuxtConfig({
 		},
 		AWS_ACCESS_KEY: process.env.AWS_ACCESS_KEY,
 		AWS_SECRET: process.env.AWS_SECRET,
-		AWS_REGION: process.env.AWS_REGION,
+		AWS_BUCKET_REGION: process.env.AWS_BUCKET_REGION,
 	},
 	css: ["~/styles/fonts.css", "~/styles/mobile.css"],
 })
