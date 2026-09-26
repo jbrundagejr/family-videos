@@ -1,18 +1,21 @@
 <script setup lang="ts">
-const { data } = await useFetch<any[]>("/index.json")
+const { data } = await useFetch<any[]>("/api")
 
-console.log({data: data.value})
+const currentVideo = ref<any | null>(null)
 </script>
 
 <template>
 	<NuxtLayout>
 		<ul>
 			<li v-for="item in data" :key="item.key">
-				<NuxtLink :to="item.key">
-					{{item.key}}
-				</NuxtLink>
+				<button @click="currentVideo = item">
+					{{ item.key }}
+				</button>
 			</li>
 		</ul>
+		<Modal v-if="currentVideo" @close="currentVideo = null">
+			<video :src="currentVideo.url" controls autoplay />
+		</Modal>
 	</NuxtLayout>
 </template>
 

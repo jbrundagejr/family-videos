@@ -20,26 +20,27 @@ export const initClient = () => {
 	})
 }
 
-export const getObjects = async () => {
-	const {
-		public: { NUXT_AWS_BUCKET_NAME },
-	} = useRuntimeConfig()
+export const getBucketContentsWithPresignedURLs = async (Bucket: string) => {
 	const client = initClient()
 	const command = new ListObjectsCommand({
-		Bucket: NUXT_AWS_BUCKET_NAME as string,
+		Bucket,
 	})
 	const response = await client.send(command)
-	return response.Contents || []
+	const objects = response.Contents || []
+	return Promise.all(
+		objects.map(async (obj) => ({
+			key: obj.Key,
+			lastModified: obj.LastModified,
+			url: obj.Key ? await getPresignedUrl(Bucket, obj.Key) : null,
+		})),
+	)
 }
 
-export const getPresignedUrl = async (key: string) => {
-	const {
-		public: { NUXT_AWS_BUCKET_NAME },
-	} = useRuntimeConfig()
+export const getPresignedUrl = async (Bucket: string, Key: string) => {
 	const client = initClient()
 	const command = new GetObjectCommand({
-		Bucket: NUXT_AWS_BUCKET_NAME as string,
-		Key: key,
+		Bucket,
+		Key,
 	})
 	const url = await getSignedUrl(client, command, { expiresIn: 3600 }) // URL valid for 1 hour
 	return url
