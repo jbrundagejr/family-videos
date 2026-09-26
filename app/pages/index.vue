@@ -1,9 +1,5 @@
 <script setup lang="ts">
-const { data } = await useFetch<any[]>("/api/idrive", {
-	query: {
-		prefix: "",
-	},
-})
+const { data } = await useFetch<any[]>("/index.json")
 
 console.log({data: data.value})
 </script>
@@ -13,7 +9,6 @@ console.log({data: data.value})
 		<ul>
 			<li v-for="item in data" :key="item.key">
 				<NuxtLink :to="item.key">
-
 					{{item.key}}
 				</NuxtLink>
 			</li>

@@ -1,8 +1,12 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import Header from "~/components/Header.vue"
+import Footer from "~/components/Footer.vue"
+</script>
 
 <template>
-	<div>
-		<h1>Family Videos!</h1>
+	<Header />
+	<main>
 		<slot />
-	</div>
+	</main>
+	<Footer />
 </template>

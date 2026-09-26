@@ -1,0 +1,18 @@
+@font-face {
+	font-family: "Archivo";
+	src: local("Archivo"),
+		url("/fonts/Archivo-VariableFont.ttf");
+	font-display: swap;
+	font-weight: 100 900;
+}
+
+@font-face {
+	font-family: "Archivo";
+	src: local("Archivo"),
+		url("/fonts/Archivo-Italic-VariableFont.ttf");
+	font-display: swap;
+	font-weight: 100 900;
+  font-style: italic;
+}
+
+

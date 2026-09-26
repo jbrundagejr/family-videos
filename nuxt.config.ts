@@ -11,4 +11,5 @@ export default defineNuxtConfig({
 		AWS_SECRET: process.env.AWS_SECRET,
 		AWS_REGION: process.env.AWS_REGION,
 	},
+	css: ["~/styles/fonts.css", "~/styles/mobile.css"],
 })
