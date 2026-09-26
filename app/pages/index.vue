@@ -4,15 +4,18 @@ const { data } = await useFetch<any[]>("/api/idrive", {
 		prefix: "",
 	},
 })
+
+console.log({data: data.value})
 </script>
 
 <template>
 	<NuxtLayout>
 		<ul>
 			<li v-for="item in data" :key="item.key">
-				<video controls>
-					<source :src="item.url" type="video/mp4" />
-				</video>
+				<NuxtLink :to="item.key">
+
+					{{item.key}}
+				</NuxtLink>
 			</li>
 		</ul>
 	</NuxtLayout>
